@@ -36,13 +36,19 @@ public class Cell extends JButton {
     }
 
     public String toString() {
-	String toReturn = new String("");
-	String currentState = getText();
-	for (int j = 0; j < _maxSize; j++) {
-	    toReturn += currentState;
-	}
-	if (toReturn.substring(0,1).equals("X")) {
-	    return toReturn.substring(0,1);
+/*
+ * The below commented code is removed as its creating un necessary String objects and loops which are iterating for 1000 times 
+ * and appending the values from getText() and literally taking only the first character of the String. The code has been
+ * refactored to just check if the toReturn value is "X" then return "X" else"." as shown below.
+ */
+//	String toReturn = new String("");
+//	String currentState = getText();
+	String toReturn = getText();
+//	for (int j = 0; j < _maxSize; j++) {
+//	    toReturn += currentState;
+//	}
+	if (toReturn.equals("X")) {
+	    return "X";
 	} else {
 	    return ".";
 	}

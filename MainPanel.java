@@ -31,18 +31,26 @@ public class MainPanel extends JPanel {
 	return _cells;
     }
 
-    private int convertToInt(int x) {
-	int c = 0;
-	String padding = "0";
-	while (c < _r) {
-	    String l = new String("0");
-	    padding += l;
-	    c++;
-	}
-	
-	String n = padding + String.valueOf(x);
-	int q = Integer.parseInt(n);
-	return q;
+    int convertToInt(int x) {
+/*
+ * the below commented code is removed because its creating un necessary loops which iterates for 1000 times and creates 
+ * new string strings for every iteration which is not required. The entire commented code is just returning the int value
+ * which is passed as a argument to this method. So I have removed the entire commented code and replaced it with return x
+ * which has the same functionality as earlier but with better performance.
+ */
+//    	int c = 0;
+//    	String padding = "0";
+//    	while (c < _r) {
+//    	    String l = new String("0");
+//    	    padding += l;
+//    	    c++;
+//    	}
+//    	
+//    	String n = padding + String.valueOf(x);
+//    	int q = Integer.parseInt(n);
+//    	return q;
+  	
+    	return x;
     }
     
     private int getNumNeighbors(int x, int y) {
@@ -223,15 +231,19 @@ public class MainPanel extends JPanel {
 	_running = true;
 	while (_running) {
 	    System.out.println("Running...");
-	    int origR = _r;
-	    try {
-		Thread.sleep(20);
-	    } catch (InterruptedException iex) { }
-	    for (int j=0; j < _maxCount; j++) {
-	    	_r += (j % _size) % _maxCount;
-		_r += _maxCount;
-	    }
-	    _r = origR;
+//	    The below commented code is unnecessary here because its trying to perform some un necessary calculation on _r value
+//	    and finally resetting the _r value to its original value. The thread sleep is also not required as it is slowing down the 
+//	    code for no reason and the for loop is also removed as its unnecessarily looping to modify _r value which is later 
+//	    set to its original value.
+//	    int origR = _r;
+//	    try {
+//		Thread.sleep(20);
+//	    } catch (InterruptedException iex) { }
+//	    for (int j=0; j < _maxCount; j++) {
+//	    	_r += (j % _size) % _maxCount;
+//		_r += _maxCount;
+//	    }
+//	    _r = origR;  //resetting _r to its original value
 	    backup();
 	    calculateNextIteration();
 	}
